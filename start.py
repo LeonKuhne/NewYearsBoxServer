@@ -43,7 +43,7 @@ def autoClose():
 # ROUTES
 #
 
-@route('/', method='POST')
+@route('/', method='GET')
 def state_handler():
     print('Route: State')
     return state.toJson()

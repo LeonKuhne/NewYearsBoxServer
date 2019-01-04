@@ -11,11 +11,14 @@ class State:
             self.musicHours = 0.0
         if not hasattr(self, 'meditationDays'):
             self.meditationDays = 0
+        if not hasattr(self, 'meditatedToday'):
+            self.meditatedToday = False
         if not hasattr(self, 'drinkDays'):
             self.drinkDays = 0
         if not hasattr(self, 'cheatDays'):
             self.cheatDays = 0
-        
+        if not hasattr(self, 'cheatToday'):
+            self.cheatToday = False
         self.save()
     
     # FUNCTIONS
@@ -30,7 +33,6 @@ class State:
 
     def addMusic(self, amount, unit):
         hrs = 0.0
-
         if unit == 'min':
             hrs += amount/60.0
         elif unit == 'hrs':
@@ -45,6 +47,7 @@ class State:
 
     def addMeditationDay(self):
         self.meditationDays += 1
+        self.meditatedToday = True
         self.save()
 
     def addDrinkDay(self):
@@ -53,6 +56,7 @@ class State:
 
     def addCheatDay(self):
         self.cheatDays += 1
+        self.cheatToday = True
         self.save()
 
     def toJson(self):
