@@ -15,6 +15,8 @@ class State:
             self.meditatedToday = False
         if not hasattr(self, 'drinkDays'):
             self.drinkDays = 0
+        if not hasattr(self, 'drinkToday'):
+            self.drinkToday = False
         if not hasattr(self, 'cheatDays'):
             self.cheatDays = 0
         if not hasattr(self, 'cheatToday'):
@@ -46,18 +48,22 @@ class State:
         self.save()
 
     def addMeditationDay(self):
-        self.meditationDays += 1
-        self.meditatedToday = True
-        self.save()
+        if not self.meditatedToday:
+            self.meditationDays += 1
+            self.meditatedToday = True
+            self.save()
 
     def addDrinkDay(self):
-        self.drinkDays += 1
-        self.save()
+        if not self.drinkToday:
+            self.drinkToday = True
+            self.drinkDays += 1
+            self.save()
 
     def addCheatDay(self):
-        self.cheatDays += 1
-        self.cheatToday = True
-        self.save()
+        if not self.cheatToday:
+            self.cheatDays += 1
+            self.cheatToday = True
+            self.save()
 
     def toJson(self):
         return self.__dict__
